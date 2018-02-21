@@ -1,3 +1,32 @@
-<div>
+<h1>Road to the next Angular PR</h1>
 
-</div>
+<form [formGroup]="userForm" novalidate autocomplete="off">
+  <div>
+    <label for="lastName">Last name</label>
+    <input type="text" id="lastName" formControlName="lastName">
+    <div *ngIf="userForm.get('lastName').invalid" class="error">Please add a last name</div>
+  </div>
+  <div>
+    <label for="firstName">First name</label>
+    <input type="text" id="firstName" formControlName="firstName">
+    <div *ngIf="userForm.get('firstName').invalid" class="error">Please add a first name</div>
+  </div>
+  <div>
+    <label for="profession">profession</label>
+    <input type="text" id="profession" formControlName="profession">
+    <div *ngIf="userForm.get('profession').invalid" class="error">Please add a profession</div>
+  </div>
+</form>
+
+<p>Form value: {{ userForm.value | json }}</p>
+<p>Form status: {{ userForm.status | json }}</p>
+<p>Form errors: {{ userForm.errors | json }}</p>
+
+<p>lastName invalid: {{ userForm.get('lastName').invalid | json }}</p>
+<p>lastName errors: {{ userForm.get('lastName').errors | json }}</p>
+
+<p>firstName invalid: {{ userForm.get('firstName').invalid | json }}</p>
+<p>firstName errors: {{ userForm.get('firstName').errors | json }}</p>
+
+<p>profession invalid: {{ userForm.get('profession').invalid | json }}</p>
+<p>profession errors: {{ userForm.get('profession').errors | json }}</p>
