@@ -4,7 +4,10 @@
   <div>
     <label for="lastName">Last name</label>
     <input type="text" id="lastName" formControlName="lastName">
-    <div *ngIf="userForm.get('lastName').invalid" class="error">Please add a last name</div>
+    <div *ngIf="userForm.get('lastName').invalid" class="error">Invalid input</div>
+    <div *ngIf="userForm.get('lastName').errors && userForm.get('lastName').errors.validLastName"
+      class="error">Please add custom keyword</div>
+
   </div>
   <div>
     <label for="firstName">First name</label>
