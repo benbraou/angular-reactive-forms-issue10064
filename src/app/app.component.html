@@ -17,7 +17,9 @@
   <div>
     <label for="profession">profession</label>
     <input type="text" id="profession" formControlName="profession">
-    <div *ngIf="userForm.get('profession').invalid" class="error">Please add a profession</div>
+    <div *ngIf="userForm.get('profession').invalid" class="error">Invalid value</div>
+    <div *ngIf="userForm.get('profession').errors && userForm.get('profession').errors.professionIsKnown"
+      class="error">Please enter a unknown profession</div>
   </div>
 </form>
 

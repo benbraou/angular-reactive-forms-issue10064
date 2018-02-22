@@ -1,5 +1,8 @@
+import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, AsyncValidatorFn } from '@angular/forms';
+import {ProfessionService} from './prefession.service';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -8,24 +11,23 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 })
 export class AppComponent implements OnInit {
   userForm: FormGroup;
-  constructor(public fb: FormBuilder) {
+  constructor(public fb: FormBuilder, private professionService: ProfessionService) {
     this.createForm();
     this.logLastNameChange();
   }
 
   ngOnInit() {
     this.userForm.reset();
-    this.userForm.setValue({
+    this.userForm.patchValue({
       lastName: 'test lastName',
-      firstName: 'test firstName',
-      profession: 'test profession',
+      firstName: 'test firstName'
     });
   }
   createForm() {
     this.userForm = this.fb.group({
       lastName: ['', [Validators.required, this.validateSyncLastName]],
       firstName: ['', Validators.required],
-      profession: ['', Validators.required]
+      profession: ['', Validators.required, this.validateProfessionAsync.bind(this)]
     });
   }
 
@@ -42,5 +44,10 @@ export class AppComponent implements OnInit {
       };
     }
     return null;
+  }
+
+  validateProfessionAsync(control: AbstractControl): Observable<{ professionIsKnown: boolean}> {
+    return this.professionService.checkProfessionInKnown(this.userForm.get('profession').value).pipe(
+      map(isKnown => isKnown ? null : {professionIsKnown: true}));
   }
 }
