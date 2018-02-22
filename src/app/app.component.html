@@ -22,25 +22,31 @@
       class="error">Please enter a unknown profession</div>
   </div>
 </form>
-
-<pre>Form value: {{ userForm.value | json }}</pre>
-<pre>Form status: {{ userForm.status | json }}</pre>
-<pre>Form errors: {{ userForm.errors | json }}</pre>
-
-<pre>lastName invalid: {{ userForm.get('lastName').invalid | json }}</pre>
-<pre>lastName errors: {{ userForm.get('lastName').errors | json }}</pre>
-<pre>lastName value: {{ userForm.get('lastName').value | json }}</pre>
-<pre>lastName value has not been changed: {{ userForm.get('lastName').pristine | json }}</pre>
-<pre>lastName input has not been entered yet (no blur event triggered): {{ userForm.get('lastName').untouched | json }}</pre>
-
-<pre>firstName invalid: {{ userForm.get('firstName').invalid | json }}</pre>
-<pre>firstName errors: {{ userForm.get('firstName').errors | json }}</pre>
-<pre>firstName value: {{ userForm.get('firstName').value | json }}</pre>
-<pre>firstName value has not been changed: {{ userForm.get('firstName').pristine | json }}</pre>
-<pre>firstName input has not been entered yet (no blur event triggered): {{ userForm.get('firstName').untouched | json }}</pre>
-
-<pre>profession invalid: {{ userForm.get('profession').invalid | json }}</pre>
-<pre>profession errors: {{ userForm.get('profession').errors | json }}</pre>
-<pre>profession value: {{ userForm.get('profession').value | json }}</pre>
-<pre>profession value has not been changed: {{ userForm.get('profession').pristine | json }}</pre>
-<pre>profession input has not been entered yet (no blur event triggered): {{ userForm.get('profession').untouched | json }}</pre>
+<div class="form-info">
+  <pre>Form value: {{ userForm.value | json }}</pre>
+  <pre>Form status: {{ userForm.status | json }}</pre>
+  <pre>Form errors: {{ userForm.errors | json }}</pre>
+</div>
+<div class="fx-container">
+    <div class="fx-elt">
+      <pre class="highlight">profession invalid: {{ userForm.get('profession').invalid | json }}</pre>
+      <pre class="highlight">profession errors: {{ userForm.get('profession').errors | json }}</pre>
+      <pre>profession value: {{ userForm.get('profession').value | json }}</pre>
+      <pre>profession value has not been changed: {{ userForm.get('profession').pristine | json }}</pre>
+      <pre>profession input has not been entered yet (no blur event triggered): {{ userForm.get('profession').untouched | json }}</pre>
+    </div>
+  <div class="fx-elt">
+    <pre>lastName invalid: {{ userForm.get('lastName').invalid | json }}</pre>
+    <pre>lastName errors: {{ userForm.get('lastName').errors | json }}</pre>
+    <pre>lastName value: {{ userForm.get('lastName').value | json }}</pre>
+    <pre>lastName value has not been changed: {{ userForm.get('lastName').pristine | json }}</pre>
+    <pre>lastName input has not been entered yet (no blur event triggered): {{ userForm.get('lastName').untouched | json }}</pre>
+  </div>
+  <div class="fx-elt">
+    <pre>firstName invalid: {{ userForm.get('firstName').invalid | json }}</pre>
+    <pre>firstName errors: {{ userForm.get('firstName').errors | json }}</pre>
+    <pre>firstName value: {{ userForm.get('firstName').value | json }}</pre>
+    <pre>firstName value has not been changed: {{ userForm.get('firstName').pristine | json }}</pre>
+    <pre>firstName input has not been entered yet (no blur event triggered): {{ userForm.get('firstName').untouched | json }}</pre>
+  </div>
+</div>
