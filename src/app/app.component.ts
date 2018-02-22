@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, AsyncValidatorFn } from '@angular/forms';
 import {ProfessionService} from './prefession.service';
 import {map} from 'rxjs/operators';
+import 'rxjs/add/observable/timer';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.userForm.reset();
     this.userForm.patchValue({
-      lastName: 'test lastName',
+      lastName: 'custom',
       firstName: 'test firstName'
     });
   }
@@ -28,7 +29,7 @@ export class AppComponent implements OnInit {
       lastName: ['', [Validators.required, this.validateSyncLastName]],
       firstName: ['', Validators.required],
       profession: ['', Validators.required, this.validateProfessionAsync.bind(this)]
-    });
+    }, {asyncValidator: this.formAsyncValidator.bind(this)});
   }
 
   logLastNameChange() {
@@ -49,5 +50,13 @@ export class AppComponent implements OnInit {
   validateProfessionAsync(control: AbstractControl): Observable<{ professionIsKnown: boolean}> {
     return this.professionService.checkProfessionInKnown(this.userForm.get('profession').value).pipe(
       map(isKnown => isKnown ? null : {professionIsKnown: true}));
+  }
+
+  formAsyncValidator(control: AbstractControl) {
+    return Observable.timer(3000).pipe(
+      map(() => {
+        return {formError: true};
+      })
+    );
   }
 }
